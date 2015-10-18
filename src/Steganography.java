@@ -1,3 +1,6 @@
+//Steganography;
+/* The application is hiding in the picture .bnp text entered by the user. */
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
