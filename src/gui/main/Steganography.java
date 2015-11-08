@@ -1,3 +1,4 @@
+package gui.main;
 //Steganography;
 /* The application is hiding in the picture .bnp text entered by the user. */
 
