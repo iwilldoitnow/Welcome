@@ -1,24 +1,21 @@
 package gui.main;
-//Steganography;
-/* The application is hiding in the picture .bnp text entered by the user. */
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JRadioButton;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JButton;
-import javax.swing.JPanel;
-import java.awt.Font;
-import javax.swing.JScrollPane;
-import javax.swing.JPasswordField;
-import javax.swing.DropMode;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+//Steganography;
+/* The application is hiding a text entered by the user in the .bmp picture */
+// PROJECT IMPORTS
+import gui.actions.ButtonActions;
 
 public class Steganography {
 
@@ -81,6 +78,11 @@ public class Steganography {
 		menuBar.add(mnNewMenu);
 		
 		btnOpen = new JButton("Open");
+		btnOpen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ButtonActions.openGraphicFile();
+			}
+		});
 		mnNewMenu.add(btnOpen);
 		
 		btnSave = new JButton("Save");
