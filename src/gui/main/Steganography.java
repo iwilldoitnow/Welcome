@@ -32,7 +32,7 @@ public class Steganography {
 	private JButton btnSave;
 	private JButton btnNev;
 	private ImagePanel panel;
-	
+
 	File victimFile = null;
 
 	/**
@@ -65,7 +65,7 @@ public class Steganography {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1024, 768);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		txtSteganografia = new JTextField();
 		txtSteganografia.setBackground(Color.BLACK);
 		txtSteganografia.setEnabled(false);
@@ -75,7 +75,7 @@ public class Steganography {
 		txtSteganografia.setText("Hide your information in a graphic file");
 		frame.getContentPane().add(txtSteganografia, BorderLayout.NORTH);
 		txtSteganografia.setColumns(10);
-		
+
 		/*
 		 * Main ImagePanel
 		 */
@@ -89,25 +89,25 @@ public class Steganography {
 		menuBar.setToolTipText("File\r\nExit");
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		frame.setJMenuBar(menuBar);
-		
-		//File submenu
+
+		// File submenu
 		mnNewMenu = new JMenu("File");
-		menuBar.add(mnNewMenu);		
-		btnOpen = new JButton("Open");		
-		mnNewMenu.add(btnOpen);		
+		menuBar.add(mnNewMenu);
+		btnOpen = new JButton("Open");
+		mnNewMenu.add(btnOpen);
 		btnSave = new JButton("Save");
-		mnNewMenu.add(btnSave);		
+		mnNewMenu.add(btnSave);
 		btnNev = new JButton("New");
 		mnNewMenu.add(btnNev);
-		
+
 		// Edit submenu
 		mnEdit = new JMenu("Edit");
 		menuBar.add(mnEdit);
-		
+
 		// View submenu
 		mntmView = new JMenuItem("View");
 		menuBar.add(mntmView);
-		
+
 		/*
 		 * BUTTON ActionListeners
 		 */
