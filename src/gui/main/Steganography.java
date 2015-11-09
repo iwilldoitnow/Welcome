@@ -11,11 +11,14 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
-//Steganography;
-/* The application is hiding a text entered by the user in the .bmp picture */
-// PROJECT IMPORTS
+
+/*Steganography;
+ The application is hiding a text entered by the user in the .bmp picture
+   PROJECT IMPORTS */
 import gui.actions.ButtonActions;
+import gui.custom.controls.ImagePanel;
 
 public class Steganography {
 
@@ -28,6 +31,9 @@ public class Steganography {
 	private JButton btnOpen;
 	private JButton btnSave;
 	private JButton btnNev;
+	private ImagePanel panel;
+	
+	File victimFile = null;
 
 	/**
 	 * Launch the application.
@@ -70,32 +76,46 @@ public class Steganography {
 		frame.getContentPane().add(txtSteganografia, BorderLayout.NORTH);
 		txtSteganografia.setColumns(10);
 		
+		/*
+		 * Main ImagePanel
+		 */
+		panel = new ImagePanel();
+		panel.setBackground(Color.LIGHT_GRAY);
+
+		/*
+		 * Main menu
+		 */
 		menuBar = new JMenuBar();
 		menuBar.setToolTipText("File\r\nExit");
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		frame.setJMenuBar(menuBar);
 		
+		//File submenu
 		mnNewMenu = new JMenu("File");
-		menuBar.add(mnNewMenu);
-		
-		btnOpen = new JButton("Open");
-		btnOpen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ButtonActions.openGraphicFile();
-			}
-		});
-		mnNewMenu.add(btnOpen);
-		
+		menuBar.add(mnNewMenu);		
+		btnOpen = new JButton("Open");		
+		mnNewMenu.add(btnOpen);		
 		btnSave = new JButton("Save");
-		mnNewMenu.add(btnSave);
-		
+		mnNewMenu.add(btnSave);		
 		btnNev = new JButton("New");
 		mnNewMenu.add(btnNev);
 		
+		// Edit submenu
 		mnEdit = new JMenu("Edit");
 		menuBar.add(mnEdit);
 		
+		// View submenu
 		mntmView = new JMenuItem("View");
 		menuBar.add(mntmView);
+		
+		/*
+		 * BUTTON ActionListeners
+		 */
+		btnOpen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panel.setImage(ButtonActions.openGraphicFile());
+			}
+		});
 	}
 
 }
