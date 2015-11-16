@@ -6,12 +6,16 @@ import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 /*Steganography;
@@ -19,6 +23,7 @@ import java.awt.event.ActionEvent;
    PROJECT IMPORTS */
 import gui.actions.ButtonActions;
 import gui.custom.controls.ImagePanel;
+import utils.ImageIntArray;
 
 public class Steganography {
 
@@ -33,7 +38,8 @@ public class Steganography {
 	private JButton btnNev;
 	private ImagePanel panel;
 
-	File victimFile = null;
+	// image to write the message into
+	private BufferedImage victimImage;
 
 	/**
 	 * Launch the application.
@@ -113,7 +119,16 @@ public class Steganography {
 		 */
 		btnOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				panel.setImage(ButtonActions.openGraphicFile());
+				File chosenFile = ButtonActions.openGraphicFile();
+				panel.setImage(chosenFile);
+				try {
+					victimImage = ImageIO.read(chosenFile);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				ImageIntArray imgIntArray = new ImageIntArray(victimImage);
+				imgIntArray.computeImageIntArray();
+				imgIntArray.printPixelsArray();
 			}
 		});
 	}
