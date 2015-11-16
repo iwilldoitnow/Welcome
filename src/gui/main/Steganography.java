@@ -23,7 +23,8 @@ import java.awt.event.ActionEvent;
    PROJECT IMPORTS */
 import gui.actions.ButtonActions;
 import gui.custom.controls.ImagePanel;
-import utils.ImageIntArray;
+import image.utils.ImageIntArray;
+import logging.utils.LoggerWrapper;
 
 public class Steganography {
 
@@ -40,6 +41,9 @@ public class Steganography {
 
 	// image to write the message into
 	private BufferedImage victimImage;
+	
+	// logger
+	private LoggerWrapper lw = LoggerWrapper.getInstance();
 
 	/**
 	 * Launch the application.
@@ -119,6 +123,7 @@ public class Steganography {
 		 */
 		btnOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				lw.logger.info("Button pressed");
 				File chosenFile = ButtonActions.openGraphicFile();
 				panel.setImage(chosenFile);
 				try {
@@ -129,6 +134,7 @@ public class Steganography {
 				ImageIntArray imgIntArray = new ImageIntArray(victimImage);
 				imgIntArray.computeImageIntArray();
 				imgIntArray.printPixelsArray();
+				lw.logger.info("IntegerArray has been calculated");
 			}
 		});
 	}
