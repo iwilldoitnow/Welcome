@@ -23,13 +23,16 @@ public class ImageIntArray {
 		}
 	}
 
-	public void printPixelsArray() {
+	public String getPixelsArrayStr() {
+		StringBuilder sb = new StringBuilder();
 		for (int yPixel = 0; yPixel < image.getHeight(); ++yPixel) {
 			for (int xPixel = 0; xPixel < image.getWidth(); ++xPixel) {
-				System.out.printf("[%d][%d]: %s; ", yPixel, xPixel, Integer.toBinaryString(imageArray[xPixel][yPixel]));
+				sb.append(String.format("[%d][%d]: %s; ",
+						yPixel, xPixel, Integer.toBinaryString(imageArray[xPixel][yPixel])));
 			}
-			System.out.println("\n");
+			sb.append("\n");
 		}
+		return sb.toString();
 	}
 
 	public void setPixel(int x, int y, int color) {

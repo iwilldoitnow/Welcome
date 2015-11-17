@@ -47,6 +47,7 @@ public class Steganography {
 
 	// image to write the message into
 	private BufferedImage victimImage;
+	private ImageIntArray imgIntArray;
 	
 	// logger
 	private LoggerWrapper lw = LoggerWrapper.getInstance();
@@ -156,7 +157,7 @@ public class Steganography {
 		 */
 		btnOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				lw.logger.info("Button pressed");
+				lw.logger.info("Button Open pressed");
 				File chosenFile = ButtonActions.openGraphicFile();
 				panel.setImage(chosenFile);
 				try {
@@ -164,14 +165,26 @@ public class Steganography {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				ImageIntArray imgIntArray = new ImageIntArray(victimImage);
+				imgIntArray = new ImageIntArray(victimImage);
 				textArea.setVisible(true);
 				btnSaveMessage.setVisible(true);
 				btnReadMessage.setVisible(true);
 				scrollPane.setVisible(true);
+			}
+		});
+		
+		btnSaveMessage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				lw.logger.info("Save message pressed");
 				imgIntArray.computeImageIntArray();
-				imgIntArray.printPixelsArray();
 				lw.logger.info("IntegerArray has been calculated");
+				lw.logger.info(imgIntArray.getPixelsArrayStr());
+			}
+		});
+		
+		btnReadMessage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lw.logger.info("Read message pressed");
 			}
 		});
 	}
