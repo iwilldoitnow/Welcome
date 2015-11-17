@@ -1,4 +1,4 @@
-package logging.utils;
+package utils.logging;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;

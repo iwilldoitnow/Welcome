@@ -25,8 +25,9 @@ import java.awt.event.ActionEvent;
    PROJECT IMPORTS */
 import gui.actions.ButtonActions;
 import gui.custom.controls.ImagePanel;
-import image.utils.ImageIntArray;
-import logging.utils.LoggerWrapper;
+import utils.image.ImageIntArray;
+import utils.logging.LoggerWrapper;
+
 import javax.swing.JTextArea;
 import java.awt.Font;
 import javax.swing.JScrollBar;

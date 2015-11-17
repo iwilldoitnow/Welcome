@@ -1,4 +1,4 @@
-package image.utils;
+package utils.image;
 
 import java.awt.image.BufferedImage;
 
