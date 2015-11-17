@@ -12,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,6 +27,10 @@ import gui.actions.ButtonActions;
 import gui.custom.controls.ImagePanel;
 import image.utils.ImageIntArray;
 import logging.utils.LoggerWrapper;
+import javax.swing.JTextArea;
+import java.awt.Font;
+import javax.swing.JScrollBar;
+import java.awt.ScrollPane;
 
 public class Steganography {
 
@@ -44,6 +50,8 @@ public class Steganography {
 	
 	// logger
 	private LoggerWrapper lw = LoggerWrapper.getInstance();
+	private JButton btnReadMessage;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -98,6 +106,31 @@ public class Steganography {
 		menuBar = new JMenuBar();
 		menuBar.setToolTipText("File\r\nExit");
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 546, 770, 129);
+		panel.add(scrollPane);
+		
+		JTextArea textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		textArea.setVisible(false);
+		scrollPane.setVisible(false);
+		
+		JButton btnSaveMessage = new JButton("Save message");
+		btnSaveMessage.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnSaveMessage.setBounds(806, 547, 114, 23);
+		btnSaveMessage.setVisible(false);
+		panel.add(btnSaveMessage);
+		
+		btnReadMessage = new JButton("Read message");
+		btnReadMessage.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnReadMessage.setBounds(806, 652, 114, 23);
+		btnReadMessage.setVisible(false);
+		panel.add(btnReadMessage);
+		
 		frame.setJMenuBar(menuBar);
 
 		// File submenu
@@ -132,11 +165,14 @@ public class Steganography {
 					e.printStackTrace();
 				}
 				ImageIntArray imgIntArray = new ImageIntArray(victimImage);
+				textArea.setVisible(true);
+				btnSaveMessage.setVisible(true);
+				btnReadMessage.setVisible(true);
+				scrollPane.setVisible(true);
 				imgIntArray.computeImageIntArray();
 				imgIntArray.printPixelsArray();
 				lw.logger.info("IntegerArray has been calculated");
 			}
 		});
 	}
-
 }
