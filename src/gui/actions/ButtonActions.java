@@ -5,7 +5,12 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import utils.logging.LoggerWrapper;
+
 public class ButtonActions {
+	
+	// logger
+	private LoggerWrapper lw = LoggerWrapper.getInstance();
 
 	public static File openGraphicFile() {
 		JFileChooser chooser = new JFileChooser();
@@ -17,5 +22,4 @@ public class ButtonActions {
 		}
 		return null;
 	}
-
 }

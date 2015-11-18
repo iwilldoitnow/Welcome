@@ -30,8 +30,6 @@ import utils.logging.LoggerWrapper;
 
 import javax.swing.JTextArea;
 import java.awt.Font;
-import javax.swing.JScrollBar;
-import java.awt.ScrollPane;
 
 public class Steganography {
 
@@ -180,6 +178,9 @@ public class Steganography {
 				imgIntArray.computeImageIntArray();
 				lw.logger.info("IntegerArray has been calculated");
 				lw.logger.info(imgIntArray.getPixelsArrayStr());
+				// save the message in the image
+				imgIntArray.saveMessageInImage(textArea.getText());
+				
 			}
 		});
 		
