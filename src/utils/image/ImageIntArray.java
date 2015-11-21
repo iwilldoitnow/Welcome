@@ -59,12 +59,21 @@ public class ImageIntArray {
 			return;
 		}
 		
-		for (int yPixel = 0; yPixel < height; ++yPixel) {
-			for (int xPixel = 0; xPixel < width; ++xPixel) {
-				imageArray[xPixel][yPixel].setBlueBit(7,messageBits.getNextBit());
+		boolean exit = false;
+			for (int yPixel = 0; yPixel < height; ++yPixel) {
+				if (exit != true) {
+				for (int xPixel = 0; xPixel < width; ++xPixel) {
+					try{
+					imageArray[xPixel][yPixel].setBlueBit(7,messageBits.getNextBit());
+					} catch (ArrayIndexOutOfBoundsException exc) {
+						logger.info("No more message bits to save");
+						exit = true;
+						break;
+					}
+				}
 			}
 		}
-		logger.info("With saved message" + getPixelsArrayStr());
+		logger.info("With saved message\n" + getPixelsArrayStr());
 	}
 
 	public void setPixel(int x, int y, int color) {

@@ -33,7 +33,7 @@ public class BitMessage {
 		    
 		    //save boolean[] into messageBits
 			logger.info("CharBits: " + charBits.toString());
-			for (int j = 0; j > 7; ++j) {
+			for (int j = 0; j < charBits.length; ++j) {
 				this.messageBits[bitPos] = charBits[j];
 				++bitPos;
 			}
