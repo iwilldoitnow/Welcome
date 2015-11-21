@@ -15,6 +15,7 @@ public class ImageIntArray {
 	public ImageIntArray(BufferedImage img) {
 		LoggerWrapper.getInstance();
 		this.logger = 	LoggerWrapper.logger;
+		
 		this.image = img;
 		this.width = image.getWidth();
 		this.height = image.getHeight();
@@ -46,11 +47,24 @@ public class ImageIntArray {
 	
 	// the most important method so far!!
 	public void saveMessageInImage(String msg) {
-		byte messageChars[] = msg.getBytes();
+		BitMessage messageBits = new BitMessage(msg.getBytes());
 		logger.info("Message to save in image:\n" + msg);
 		StringBuilder sb = new StringBuilder();
-		sb.append(new String(messageChars));
-		logger.info("byteArray to save:\n" + sb.toString());
+		sb.append(new String(msg.getBytes()));
+		
+		// check whether the image is big enough to save the massage
+		logger.info("byteArray to save:\n" + sb.subSequence(0, sb.length()));
+		if (msg.getBytes().length > this.width*this.height/8) {
+			logger.info("Could not save this message!\n Message is too long or the image is too small.");
+			return;
+		}
+		
+		for (int yPixel = 0; yPixel < height; ++yPixel) {
+			for (int xPixel = 0; xPixel < width; ++xPixel) {
+				imageArray[xPixel][yPixel].setBlueBit(7,messageBits.getNextBit());
+			}
+		}
+		logger.info("With saved message" + getPixelsArrayStr());
 	}
 
 	public void setPixel(int x, int y, int color) {
