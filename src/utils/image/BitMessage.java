@@ -22,14 +22,14 @@ public class BitMessage {
 			logger.info("Char: " + currentByte);
 			//convert byte to boolean[]
 		    boolean charBits[] = new boolean[8];
-		    charBits[0] = ((currentByte & 0x01) != 0);
-		    charBits[1] = ((currentByte & 0x02) != 0);
-		    charBits[2] = ((currentByte & 0x04) != 0);
-		    charBits[3] = ((currentByte & 0x08) != 0);
-		    charBits[4] = ((currentByte & 0x16) != 0);
-		    charBits[5] = ((currentByte & 0x32) != 0);
-		    charBits[6] = ((currentByte & 0x64) != 0);
-		    charBits[7] = ((currentByte & 0x128) != 0);
+		    charBits[7] = ((currentByte & 0x01) != 0);
+		    charBits[6] = ((currentByte & 0x02) != 0);
+		    charBits[5] = ((currentByte & 0x04) != 0);
+		    charBits[4] = ((currentByte & 0x08) != 0);
+		    charBits[3] = ((currentByte & 0x16) != 0);
+		    charBits[2] = ((currentByte & 0x32) != 0);
+		    charBits[1] = ((currentByte & 0x64) != 0);
+		    charBits[0] = ((currentByte & 0x128) != 0);
 		    
 		    //save boolean[] into messageBits
 			logger.info("CharBits: " + charBits.toString());
