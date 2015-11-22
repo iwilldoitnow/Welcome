@@ -73,7 +73,19 @@ public class ImageIntArray {
 				}
 			}
 		}
-		logger.info("With saved message\n" + getPixelsArrayStr());
+		logger.info("With saved message: \n" + getPixelsArrayStr());
+		saveImagePixels();
+	}
+	
+	/*
+	 *  save all the colors for pixels in the image
+	 */
+	private void saveImagePixels() {
+		for (int xPixel = 0; xPixel < this.width; ++xPixel) {
+			for (int yPixel = 0; yPixel < this.height; ++yPixel) {
+				this.setPixel(xPixel, yPixel, imageArray[xPixel][yPixel].getColor());
+			}
+		}
 	}
 
 	public void setPixel(int x, int y, int color) {

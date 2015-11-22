@@ -174,12 +174,12 @@ public class Steganography {
 		
 		btnSaveMessage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				lw.logger.info("Save message pressed");
 				imgIntArray.computeImageIntArray();
 				lw.logger.info("IntegerArray has been calculated");
-				lw.logger.info(imgIntArray.getPixelsArrayStr());
+				lw.logger.info("Before saving the message: \n" + imgIntArray.getPixelsArrayStr());
 				// save the message in the image
 				imgIntArray.saveMessageInImage(textArea.getText());
+				panel.setImage(victimImage);
 				
 			}
 		});

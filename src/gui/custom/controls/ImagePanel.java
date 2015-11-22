@@ -44,6 +44,12 @@ public class ImagePanel extends JPanel {
 		setComponentSize();
 		repaint();
 	}
+	
+	public void setImage(BufferedImage img) {
+		image = img;
+		setComponentSize();
+		repaint();
+	}
 
 	private void setComponentSize() {
 		if (image != null) {
