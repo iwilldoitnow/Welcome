@@ -56,6 +56,10 @@ class RGBPixel {
 	        this.blue[bit] = value;
 	        this.color = computeColor();
 	    }
+	    
+	    public boolean getBlueBit(int bit) {
+	    	return this.blue[bit];
+	    }
 
 	    private int computeColor() {
 	        int newColor = 0;

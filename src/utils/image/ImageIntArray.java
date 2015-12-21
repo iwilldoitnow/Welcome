@@ -45,6 +45,19 @@ public class ImageIntArray {
 		return sb.toString();
 	}
 	
+	public String readMessageFromImage() {
+		boolean[] bitArray = new boolean[height*width];
+		int bitIndex = 0;
+		for (int yPixel = 0; yPixel < height; ++yPixel) {
+			for (int xPixel = 0; xPixel < width; ++xPixel) {
+				bitArray[bitIndex] = imageArray[xPixel][yPixel].getBlueBit(7);
+				++bitIndex;
+			}
+		}
+		BitMessage readMessage = new BitMessage(bitArray);
+		return readMessage.getStringMessage();
+	}
+	
 	// the most important method so far!!
 	public void saveMessageInImage(String msg) {
 		BitMessage messageBits = new BitMessage(msg.getBytes());
