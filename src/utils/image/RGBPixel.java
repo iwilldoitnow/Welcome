@@ -1,7 +1,7 @@
 package utils.image;
 //import org.apache.commons.lang.ArrayUtils;
 
-import org.apache.commons.lang3.ArrayUtils;
+// import org.apache.commons.lang3.ArrayUtils;
 
 class RGBPixel {
 	
@@ -63,15 +63,37 @@ class RGBPixel {
 
 	    private int computeColor() {
 	        int newColor = 0;
-	        boolean[] colorArray1 = ArrayUtils.addAll(this.alpha, this.red);
-	        boolean[] colorArray2 = ArrayUtils.addAll(this.green, this.blue);
-	        boolean[] colorArray = ArrayUtils.addAll(colorArray1, colorArray2);
+	        boolean[] colorArray = concatenateColour(this.alpha, this.red, this.green, this.blue);
 	        int aSize = colorArray.length;
 	        // compute color
 	        for (int i = 0; i < aSize; ++i) {
 	        	newColor = (newColor << 1) + (colorArray[i] ? 1 : 0);
 	        }
 	        return newColor;
+	    }
+	    
+	    private boolean[] concatenateColour(boolean[] alpha, boolean[] red, boolean[] green, boolean[] blue) {
+	    	boolean[] colorArray = new boolean[alpha.length+red.length+green.length+blue.length];
+	    	int j = 0;
+	    	// could be possibly improved
+	    	for (int i=0; i < alpha.length;++i) {
+	    		colorArray[j] = alpha[i];
+	    		++j;
+	    	}
+	    	for (int i=0; i < red.length;++i) {
+	    		colorArray[j] = red[i];
+	    		++j;
+	    	}
+	    	for (int i=0; i < green.length;++i) {
+	    		colorArray[j] = green[i];
+	    		++j;
+	    	}
+	    	for (int i=0; i < blue.length;++i) {
+	    		colorArray[j] = blue[i];
+	    		++j;
+	    	}
+	    	
+	    	return colorArray;
 	    }
 
 	    public int getColor() {
