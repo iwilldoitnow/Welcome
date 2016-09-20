@@ -187,7 +187,8 @@ public class Steganography {
 		btnReadMessage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lw.logger.info("Read message pressed");
-				imgIntArray.computeImageIntArray();
+				// zerkn¹æ czy z tym bêdzie czytaæ wiadomoœæ z obrazka
+				// imgIntArray.computeImageIntArray();
 				textArea.setText(imgIntArray.readMessageFromImage());
 			}
 		});

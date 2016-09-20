@@ -56,25 +56,25 @@ public class BitMessage {
 	public String getStringMessage() {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < messageBits.length; i+=8) {
-			byte currentChar = 0;
+			char currentChar = 0;
 			
 			// get particular bits into the currentChar
 			if (messageBits[i])
-				currentChar += 1;
-			if (messageBits[i+1])
-				currentChar += 2;
-			if (messageBits[i+2])
-				currentChar += 4;
-			if (messageBits[i+3])
-				currentChar += 8;
-			if (messageBits[i+4])
-				currentChar += 16;
-			if (messageBits[i+5])
-				currentChar += 32;
-			if (messageBits[i+6])
-				currentChar += 64;
-			if (messageBits[i+7])
 				currentChar += 128;
+			if (messageBits[i+1])
+				currentChar += 64;
+			if (messageBits[i+2])
+				currentChar += 32;
+			if (messageBits[i+3])
+				currentChar += 16;
+			if (messageBits[i+4])
+				currentChar += 8;
+			if (messageBits[i+5])
+				currentChar += 4;
+			if (messageBits[i+6])
+				currentChar += 2;
+			if (messageBits[i+7])
+				currentChar += 1;
 			sb.append(currentChar);
 		}
 		
