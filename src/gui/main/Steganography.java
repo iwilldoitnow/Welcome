@@ -180,6 +180,12 @@ public class Steganography {
 				// save the message in the image
 				imgIntArray.saveMessageInImage(textArea.getText());
 				panel.setImage(victimImage);
+				try {
+					ImageIO.write(victimImage, "BMP", new File("messageInImage.bmp"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 		});
@@ -188,7 +194,7 @@ public class Steganography {
 			public void actionPerformed(ActionEvent e) {
 				lw.logger.info("Read message pressed");
 				// zerkn¹æ czy z tym bêdzie czytaæ wiadomoœæ z obrazka
-				// imgIntArray.computeImageIntArray();
+				//imgIntArray.computeImageIntArray();
 				textArea.setText(imgIntArray.readMessageFromImage());
 			}
 		});
