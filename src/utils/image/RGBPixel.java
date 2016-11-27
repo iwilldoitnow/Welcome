@@ -1,6 +1,8 @@
 package utils.image;
 //import org.apache.commons.lang.ArrayUtils;
 
+import java.awt.Color;
+
 // import org.apache.commons.lang3.ArrayUtils;
 
 class RGBPixel {
@@ -16,10 +18,10 @@ class RGBPixel {
 	        this.color = color;
 	        
 	        String bitArray = Integer.toBinaryString(color);
-	        String alphaStr = bitArray.substring(0, 7);
-	        String redStr = bitArray.substring(8, 15);
-	        String greenStr = bitArray.substring(16, 23);
-	        String blueStr = bitArray.substring(24, 31);
+	        String alphaStr = bitArray.substring(0, 8);
+	        String redStr = bitArray.substring(8, 16);
+	        String greenStr = bitArray.substring(16, 24);
+	        String blueStr = bitArray.substring(24, 32);
 	        
 	        // alpha
 	        for(int i = 0; i < alphaStr.length(); ++i){
@@ -72,6 +74,15 @@ class RGBPixel {
 	        return newColor;
 	    }
 	    
+	    private int computeColor(boolean[] colorPart) {
+	    	int color = 0;
+	    	int size = colorPart.length;
+	    	for (int i = 0; i < size; ++i) {
+	    		color = (color << 1) + (colorPart[i] ? 1 : 0);
+	    	}
+	    	return color;
+	    }
+	    
 	    private boolean[] concatenateColour(boolean[] alpha, boolean[] red, boolean[] green, boolean[] blue) {
 	    	boolean[] colorArray = new boolean[alpha.length+red.length+green.length+blue.length];
 	    	int j = 0;
@@ -97,6 +108,7 @@ class RGBPixel {
 	    }
 
 	    public int getColor() {
-	        return this.color;
+	    	Color c = new Color(computeColor(red), computeColor(green), computeColor(blue));
+	    	return c.getRGB();
 	    }
 }

@@ -24,8 +24,8 @@ public class ImageIntArray {
 	public void computeImageIntArray() {
 		imageArray = new RGBPixel[image.getWidth()][image.getHeight()];
 
-		for (int xPixel = 0; xPixel < this.width; ++xPixel) {
-			for (int yPixel = 0; yPixel < this.height; ++yPixel) {
+		for (int xPixel = 0; xPixel < this.width-1; ++xPixel) {
+			for (int yPixel = 0; yPixel < this.height-1; ++yPixel) {
 				int color = image.getRGB(xPixel, yPixel);
 				imageArray[xPixel][yPixel] = new RGBPixel(color);
 			}
@@ -34,8 +34,8 @@ public class ImageIntArray {
 
 	public String getPixelsArrayStr() {
 		StringBuilder sb = new StringBuilder();
-		for (int xPixel = 0; xPixel < width; ++xPixel) {
-			for (int yPixel = 0; yPixel < height; ++yPixel) {
+		for (int xPixel = 0; xPixel < width-1; ++xPixel) {
+			for (int yPixel = 0; yPixel < height-1; ++yPixel) {
 				sb.append(String.format("[%d][%d]: %s; ",
 						xPixel, yPixel, Integer.toBinaryString(imageArray[xPixel][yPixel].getColor())));
 			}
@@ -47,8 +47,8 @@ public class ImageIntArray {
 	public String readMessageFromImage() {
 		boolean[] bitArray = new boolean[height*width];
 		int bitIndex = 0;
-		for (int xPixel = 0; xPixel < width; ++xPixel) {
-			for (int yPixel = 0; yPixel < height; ++yPixel) {
+		for (int xPixel = 0; xPixel < width-1; ++xPixel) {
+			for (int yPixel = 0; yPixel < height-1; ++yPixel) {
 				boolean val = imageArray[xPixel][yPixel].getBlueBit(7);
 				bitArray[bitIndex] = val;
 				++bitIndex;
@@ -73,9 +73,9 @@ public class ImageIntArray {
 		}
 		
 		boolean exit = false;
-			for (int xPixel = 0; xPixel < width; ++xPixel) {
+			for (int xPixel = 0; xPixel < width-1; ++xPixel) {
 				if (exit != true) {
-				for (int yPixel = 0; yPixel < height; ++yPixel) {
+				for (int yPixel = 0; yPixel < height-1; ++yPixel) {
 					try{
 					imageArray[xPixel][yPixel].setBlueBit(7,messageBits.getNextBit());
 					} catch (ArrayIndexOutOfBoundsException exc) {
@@ -94,9 +94,9 @@ public class ImageIntArray {
 	 *  save all the colors for pixels in the image
 	 */
 	private void saveImagePixels() {
-		for (int xPixel = 0; xPixel < this.width; ++xPixel) {
-			for (int yPixel = 0; yPixel < this.height; ++yPixel) {
-				this.setPixel(yPixel, xPixel, imageArray[xPixel][yPixel].getColor());
+		for (int xPixel = 0; xPixel < this.width-1; ++xPixel) {
+			for (int yPixel = 0; yPixel < this.height-1; ++yPixel) {
+				this.setPixel(xPixel, yPixel, imageArray[xPixel][yPixel].getColor());
 			}
 		}
 	}

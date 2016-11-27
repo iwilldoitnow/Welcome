@@ -55,7 +55,7 @@ public class BitMessage {
 	
 	public String getStringMessage() {
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < messageBits.length; i+=8) {
+		for (int i = 0; i < messageBits.length-1; i+=8) {
 			char currentChar = 0;
 			
 			// get particular bits into the currentChar
