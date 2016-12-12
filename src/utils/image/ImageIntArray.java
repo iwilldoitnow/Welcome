@@ -3,6 +3,8 @@ package utils.image;
 import java.awt.image.BufferedImage;
 import java.util.logging.Logger;
 
+import javax.swing.JOptionPane;
+
 import utils.logging.LoggerWrapper;
 
 public class ImageIntArray {
@@ -68,7 +70,9 @@ public class ImageIntArray {
 		// check whether the image is big enough to save the massage
 		logger.info("byteArray to save:\n" + sb.subSequence(0, sb.length()));
 		if (msg.getBytes().length > this.width*this.height/8) {
-			logger.info("Could not save this message!\n Message is too long or the image is too small.");
+			String infoMsg = "Could not save this message!\n Your message is too long or the image is too small.";
+			logger.info(msg);
+			JOptionPane.showMessageDialog(null, infoMsg, "Whooops!!", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		
