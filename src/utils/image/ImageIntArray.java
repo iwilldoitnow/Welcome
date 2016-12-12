@@ -69,8 +69,10 @@ public class ImageIntArray {
 		
 		// check whether the image is big enough to save the massage
 		logger.info("byteArray to save:\n" + sb.subSequence(0, sb.length()));
-		if (msg.getBytes().length > this.width*this.height/8) {
-			String infoMsg = "Could not save this message!\n Your message is too long or the image is too small.";
+		int charsToSave = this.width*this.height/8;
+		if (msg.getBytes().length > charsToSave) {
+			String infoMsg = "Could not save this message!\n\nYour message is too long or the image is too small.\n"
+					+ "Max message length for this image is: " + charsToSave;
 			logger.info(msg);
 			JOptionPane.showMessageDialog(null, infoMsg, "Whooops!!", JOptionPane.INFORMATION_MESSAGE);
 			return;
